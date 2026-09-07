@@ -8,9 +8,8 @@ export class ProductId
     constructor(value)
     {
         if (!validateUuid(value))
-        {
-            throw new Error(`Invalid product ID: ${value}`);
-        }
+            throw new ValidationError(`Invalid product ID: ${value}`);
+
         this.#value = value;
         Object.freeze(this);
     }
@@ -27,7 +26,7 @@ export class ProductId
 
     equals(other)
     {
-        return other instanceof ProductId && this.#value === other.#value;
+        return other instanceof ProductId && this.#value === other.value;
     }
 
     toString()
